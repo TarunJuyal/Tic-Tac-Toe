@@ -1,8 +1,10 @@
+let count=0;
 function startGame(){
     for(let i =1 ; i<=9 ; i++){
         clearCell(i);
         reInitializeData(i);
     }
+     count=0;
     document.turn = "X";
     document.winner= null;
     setMessage(`${document.turn} gets to start.`);
@@ -17,6 +19,7 @@ function nextMove(cell,number){
     else if(cell.innerText==""){
       cell.innerText=document.turn;
       setData(cell.innerText,number);
+      count++;
       switchTurn(); 
     }
     else{
@@ -24,7 +27,10 @@ function nextMove(cell,number){
     }
 }
 function switchTurn(){
-    if(checkForWin(document.turn)){
+    if(count==9 && !checkForWin(document.turn)){
+        setMessage(`Ooops! All slots full..Restart if u want to play again.`);
+    }
+    else if(checkForWin(document.turn)){
         setMessage(`Congratulations ${document.turn} wins the game !!!`);
         document.winner=document.turn;
     }
@@ -80,16 +86,3 @@ function reInitializeData(number){
         document.getElementById("firebaseMsg").innerText="Error in updating data";
     })
  }
-//  function getData(){
-//      for(let i=0;i<=9;i++){
-//         updateData(i);
-//      }
-//  }
- function updateData(text,number){
-    let promise = firebase.database().ref(`status/${obj.cellNumber}`).on("value");
-    promise.then(data=>{
-        document.getElementById("firebaseMsg").innerText="Data updated";
-    }).catch(err=>{
-        document.getElementById("firebaseMsg").innerText="Error in updating data";
-    })
-}
