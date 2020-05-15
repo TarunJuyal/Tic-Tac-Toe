@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TicTacToe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/ctrl.js"></script>
+     
+</head>
+<body  onload="startGame()">
+    <h1 class="heading"> My Tic Tac Toe Game &#128516</h1>
+    <p style="text-align: center;" id="para" ><input style="width: 200px;height:40px;" 
+        placeholder="Enter Your Name Here" type="text" autofocus></input></p> 
+    <p style="text-align: center;"><button onclick="showDiv()" >Submit</button></p>
+    <div id="gameDiv" style="display: none;">
+        <div class="text" id="msg"></div>
+            <table border="5">
+                <tr>
+                    <td id="cell1" onclick="nextMove(this,1)"></td>
+                    <td id="cell2" onclick="nextMove(this,2)"></td> 
+                    <td id="cell3" onclick="nextMove(this,3)"></td>
+                </tr>}
+                <tr>
+                    <td id="cell4" onclick="nextMove(this,4)"></td>
+                    <td id="cell5" onclick="nextMove(this,5)"></td>
+                    <td id="cell6" onclick="nextMove(this,6)"></td>
+                </tr>
+                <tr>
+                    <td id="cell7" onclick="nextMove(this,7)"></td>
+                    <td id="cell8" onclick="nextMove(this,8)"></td>
+                    <td id="cell9" onclick="nextMove(this,9)"></td>
+                </tr>
+            </table>
+        <br>
+        <p style="text-align: center"><button onclick="startGame()">Rematch</button></p>
+    </div>    
+    <h2 id="firebaseMsg"></h2>
+</body>
+</html>
